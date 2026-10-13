@@ -1,0 +1,12 @@
+config.json
+.env
+triage_report.csv
+suspicious_ips.txt
+*.log
+dist/
+build/
+*.spec
+__pycache__/
+*.py[cod]
+venv/
+.DS_Store

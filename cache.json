@@ -1,0 +1,22 @@
+{
+    "45.154.255.86": {
+        "ip": "45.154.255.86",
+        "country": "SE",
+        "isp": "KeFF Networks Ltd",
+        "abuse_score": 0,
+        "vt_malicious": 0,
+        "vt_suspicious": 0,
+        "decision": "CLEAN",
+        "timestamp": "2026-10-09 14:47:57"
+    },
+    "185.220.101.5": {
+        "ip": "185.220.101.5",
+        "country": "DE",
+        "isp": "Artikel10 e.V.",
+        "abuse_score": 100,
+        "vt_malicious": 12,
+        "vt_suspicious": 3,
+        "decision": "CRITICAL",
+        "timestamp": "2026-10-09 14:48:13"
+    }
+}
