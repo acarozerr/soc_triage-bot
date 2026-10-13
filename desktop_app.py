@@ -36,7 +36,7 @@ class SOARTriageApp(ctk.CTk):
 
         self.logo_label = ctk.CTkLabel(
             self.sidebar_frame, 
-            text="🛡️ SOC SOAR", 
+            text="SOC SOAR", 
             font=ctk.CTkFont(size=20, weight="bold")
         )
         self.logo_label.grid(row=0, column=0, padx=20, pady=(20, 10))
@@ -44,7 +44,7 @@ class SOARTriageApp(ctk.CTk):
         # Splunk Tetikleyici Buton
         self.btn_run_splunk = ctk.CTkButton(
             self.sidebar_frame, 
-            text="🚀 Splunk Triyajı", 
+            text="Splunk Triyajı", 
             command=self.start_splunk_triage_thread,
             fg_color="#1f538d"
         )
@@ -53,7 +53,7 @@ class SOARTriageApp(ctk.CTk):
         # Wazuh Tetikleyici Buton
         self.btn_run_wazuh = ctk.CTkButton(
             self.sidebar_frame, 
-            text="🦅 Wazuh Triyajı", 
+            text="Wazuh Triyajı", 
             command=self.start_wazuh_triage_thread,
             fg_color="#2b7a78"
         )
@@ -124,6 +124,30 @@ class SOARTriageApp(ctk.CTk):
         table_frame.grid_columnconfigure(0, weight=1)
         table_frame.grid_rowconfigure(0, weight=1)
 
+        # --- Koyu Tema Tablo Stili ---
+        style = ttk.Style()
+        style.theme_use("default")
+        style.configure(
+            "Treeview",
+            background="#2b2b2b",
+            foreground="#ffffff",
+            fieldbackground="#2b2b2b",
+            borderwidth=0,
+            rowheight=28
+        )
+        style.configure(
+            "Treeview.Heading",
+            background="#1e1e1e",
+            foreground="#ffffff",
+            relief="flat"
+        )
+        style.map(
+            "Treeview",
+            background=[("selected", "#1f538d")],
+            foreground=[("selected", "#ffffff")]
+        )
+        # -----------------------------
+
         columns = ("ip", "country", "isp", "abuse_score", "decision", "source", "timestamp")
         self.tree = ttk.Treeview(table_frame, columns=columns, show="headings", height=15)
 
@@ -131,10 +155,10 @@ class SOARTriageApp(ctk.CTk):
             self.tree.heading(col, text=col.upper())
             self.tree.column(col, anchor="center", width=110)
 
-        scrollbar = ttk.Scrollbar(table_frame, orient="vertical", command=self.tree.yview)
+        scrollbar = ctk.CTkScrollbar(table_frame, orientation="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
         self.tree.grid(row=0, column=0, sticky="nsew")
-        scrollbar.grid(row=0, column=1, sticky="ns")
+        scrollbar.grid(row=0, column=1, sticky="ns", padx=(2, 0))
 
         # macOS Trackpad Kaydırma Desteği
         def _on_tree_scroll(event):
